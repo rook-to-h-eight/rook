@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Password Page</title>
+	<style>
+		body {
+			background-color: #222;
+			color: #fff;
+			font-family: Arial, sans-serif;
+		}
+
+		h1 {
+			font-size: 32px;
+			font-weight: bold;
+			text-align: center;
+			margin-top: 50px;
+		}
+
+		.password-input {
+			display: flex;
+			justify-content: center;
+			margin-top: 50px;
+		}
+
+		.password-input input {
+			padding: 10px;
+			font-size: 18px;
+			border: none;
+			background-color: #666;
+			color: #fff;
+			width: 50px;
+			text-align: center;
+			margin: 0 5px;
+		}
+
+		.password-input input:focus {
+			outline: none;
+			background-color: #888;
+		}
+
+		input[type="button"] {
+			padding: 10px 20px;
+			font-size: 20px;
+			border: none;
+			background-color: #900;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		input[type="button"]:hover {
+			background-color: #600;
+		}
+
+		input[type="button"]:focus {
+			outline: none;
+		}
+	</style>
+	<script>
+		function handleInput(currentInput, nextInput) {
+			var maxLength = parseInt(currentInput.getAttribute("maxlength"));
+			var currentLength = currentInput.value.length;
+
+			if (currentLength === maxLength) {
+				nextInput.focus();
+			}
+
+			var inputs = document.querySelectorAll(".password-input input");
+			var filled = true;
+
+			inputs.forEach(function(input) {
+				if (input.value === "") {
+					filled = false;
+				}
+			});
+
+			if (filled) {
+				checkPassword();
+			}
+		}
+
+		function checkPassword() {
+			var inputs = document.querySelectorAll(".password-input input");
+			var password = "";
+
+			inputs.forEach(function(input) {
+				password += input.value;
+			});
+
+			if (password === "12345") {
+				window.location.href = "rook_takes_pawn.html"; // Replace with the URL of the new page
+			} else {
+				alert("Incorrect");
+
+				inputs.forEach(function(input) {
+					input.value = ""; // Clear the input values
+				});
+			}
+		}
+
+		window.onload = function() {
+			const inputs = document.querySelectorAll(".password-input input");
+
+			for (var i = 0; i < inputs.length; i++) {
+				inputs[i].value = "";
+				inputs[i].addEventListener("input", function() {
+					if (this.nextElementSibling) {
+						handleInput(this, this.nextElementSibling);
+					} else {
+						handleInput(this, inputs[0]);
+					}
+				});
+			}
+
+		};
+	</script>
+</head>
+<body>
+	<h1>Enter Password</h1>
+	<form>
+		<div class="password-input">
+			<input type="text" maxlength="1" required>
+			<input type="text" maxlength="1" required>
+			<input type="text" maxlength="1" required>
+			<input type="text" maxlength="1" required>
+			<input type="text" maxlength="1" required>
+		</div>
+		<br>
+	</form>
+</body
