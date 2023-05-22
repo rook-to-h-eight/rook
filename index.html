@@ -2,59 +2,8 @@
 <html>
 <head>
 	<title>Password Page</title>
-	<style>
-		body {
-			background-color: #222;
-			color: #fff;
-			font-family: Arial, sans-serif;
-		}
+	<link rel="stylesheet" href="./style.css">
 
-		h1 {
-			font-size: 32px;
-			font-weight: bold;
-			text-align: center;
-			margin-top: 50px;
-		}
-
-		.password-input {
-			display: flex;
-			justify-content: center;
-			margin-top: 50px;
-		}
-
-		.password-input input {
-			padding: 10px;
-			font-size: 18px;
-			border: none;
-			background-color: #666;
-			color: #fff;
-			width: 50px;
-			text-align: center;
-			margin: 0 5px;
-		}
-
-		.password-input input:focus {
-			outline: none;
-			background-color: #888;
-		}
-
-		input[type="button"] {
-			padding: 10px 20px;
-			font-size: 20px;
-			border: none;
-			background-color: #900;
-			color: #fff;
-			cursor: pointer;
-		}
-
-		input[type="button"]:hover {
-			background-color: #600;
-		}
-
-		input[type="button"]:focus {
-			outline: none;
-		}
-	</style>
 	<script>
 		function handleInput(currentInput, nextInput) {
 			var maxLength = parseInt(currentInput.getAttribute("maxlength"));
