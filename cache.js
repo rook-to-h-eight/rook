@@ -19,6 +19,7 @@ function handleInput(currentInput, nextInput) {
     checkPassword();
   }
 }
+let errorCount = 0;
 
 function checkPassword() {
   const inputs = document.querySelectorAll(".password-input input");
@@ -39,14 +40,46 @@ function checkPassword() {
       window.location.href = "queen_takes_bishop.html";
       break;
     default:
-      alert("Incorrect");
+      console.log(errorCount);
+      let errorText;
+      switch(errorCount){
+        case 0:
+          errorText = "that is incorrect";
+          break;
+        case 1:
+          errorText = "invalid passcode";
+          break;
+        case 2:
+          errorText = "try again";
+          break;
+        case 3:
+          errorText = "incorrect passcode entered";
+          break;
+        case 4:
+          errorText = "the passcode is incorrect";
+          break;
+        case 5:
+          errorText = "incorrect";
+          break;
+        case 6:
+          errorText = "guessing is not advisable";
+          break;
+        case 7:
+          errorText = "warning, system status potentially compromised";
+          break;
+        default:
+          errorText = ErrorMessages[Math.floor(Math.random() * ErrorMessages.length)];
+      }
+      errorCount++;
+      alert(errorText);
+    }
 
-      inputs.forEach(function(input) {
-        input.value = ""; // Clear the input values
-      });
+    inputs.forEach(function(input) {
+      input.value = ""; // Clear the input values
+    });
   }
 
-}
+
 
 window.onload = function() {
   const inputs = document.querySelectorAll(".password-input input");
@@ -63,6 +96,14 @@ window.onload = function() {
   }
 
 };
+
+window.addEventListener("pageshow", function (event) {
+  const inputs = document.querySelectorAll(".password-input input");
+  inputs.forEach(function(input) {
+    input.value = ""; // Clear the input values
+  });
+  errorCount = 0;
+});
 
 function enigmaticFunction() {
   const data = ['Open', 'your', 'mind', 'and', 'embrace', 'the', 'unknown'];
@@ -92,8 +133,27 @@ function enigmaticFunction() {
   return result;
 }
 
-const SourceCodeDynamicCompressionParameters = {
-  "alpha": "12345",
-  "beta": "45678",
-  "charlie": "54321"
-}
+const SourceCodeDynamicCompressionParameters = {"alpha": "12345","beta": "45678","charlie": "54321"}
+
+const ErrorMessages = [
+  "invalid entry. retry with the correct security passphrase.",
+  "passcode error. the firewall remains intact. Try again.",
+  "incorrect decryption code. the data vault remains secure.",
+  "error: system breach unsuccessful.",
+  "access blocked. invalid code, verify your credentials.",
+  "system alert! incorrect passcode. re-enter the correct security key.",
+  "intrusion attempt failed. input the correct override code.",
+  "passcode verification unsuccessful. retry.",
+  "encryption key mismatch. recheck your decryption key.",
+  "access attempt denied. incorrect passcode.",
+  "security breach unsuccessful. enter the valid authorization key.",
+  "error: Incorrect access code. consult your hacking guide.",
+  "invalid passcode. system security remains uncompromised.",
+  "failed intrusion attempt. enter the correct security code.",
+  "passcode mismatch. input valid security credentials.",
+  "system alert: invalid passcode. retry with the correct security passphrase.",
+  "security protocol still active. incorrect passcode.",
+  "access denied. the system does not recognize this decryption code.",
+  "incorrect passcode. the security matrix remains unbreached.",
+  "code error. confirm your passcode and try again.",
+]
