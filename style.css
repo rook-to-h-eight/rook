@@ -2,7 +2,7 @@
 body {
   background-color: #222;
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: Monaco, monospace;
   margin: 0;
   padding: 0;
   display: flex;
@@ -22,11 +22,12 @@ body {
   max-height: 100%;
   display: block;
   margin: 0 auto;
+  padding-top: 10px;
 }
 
 h1 {
   font-size: 32px;
-  font-weight: bold;
+  font-weight: 100;
   text-align: center;
   margin-top: 50px;
 }
@@ -67,5 +68,22 @@ input[type="button"]:hover {
 }
 
 input[type="button"]:focus {
+  outline: none;
+}
+
+.password-submit {
+  padding: 10px 20px;
+  font-size: 20px;
+  border: none;
+  background-color: #900;
+  color: #fff;
+  cursor: pointer;
+}
+
+.password-submit:hover {
+  background-color: #600;
+}
+
+.password-submit:focus {
   outline: none;
 }
