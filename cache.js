@@ -99,9 +99,12 @@ window.onload = function() {
 
 window.addEventListener("pageshow", function (event) {
   const inputs = document.querySelectorAll(".password-input input");
-  inputs.forEach(function(input) {
-    input.value = ""; // Clear the input values
-  });
+  for (var i = 0; i < inputs.length; i++) {
+    if (i === 0) {
+      inputs[i].focus();
+    }
+    inputs[i].value = ""; // Clear the input values
+  }
   errorCount = 0;
 });
 
