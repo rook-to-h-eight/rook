@@ -13,7 +13,7 @@ body {
 }
 
 .image-container {
-  max-height: 50vh;
+  max-height: 33vh;
   max-width: 100%;
 }
 
@@ -22,7 +22,7 @@ body {
   max-height: 100%;
   display: block;
   margin: 0 auto;
-  padding-top: 10px;
+  padding: 10px;
 }
 
 h1 {
@@ -134,4 +134,10 @@ input[type="button"]:focus {
   opacity: 0;
   transition-property: opacity;
   transition-duration: 4.00s; /* Transition duration of 0.5 seconds */
+}
+
+.content-container {
+  padding-top: 10pt;
+  max-width: 75%; /* Adjust the percentage as needed */
+  margin: 0 auto; /* Center the container horizontally */
 }
