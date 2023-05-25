@@ -1,13 +1,6 @@
-function handleInput(currentInput, nextInput) {
-  var maxLength = parseInt(currentInput.getAttribute("maxlength"));
-  var currentLength = currentInput.value.length;
-
-  if (currentLength === maxLength) {
-    nextInput.focus();
-  }
-
-  var inputs = document.querySelectorAll(".password-input input");
-  var filled = true;
+function handleInput() {
+  const inputs = document.querySelectorAll(".cache-password-input input");
+  let filled = true;
 
   inputs.forEach(function(input) {
     if (input.value === "") {
@@ -20,69 +13,62 @@ function handleInput(currentInput, nextInput) {
   }
 }
 let errorCount = 0;
-
+let watcher;
 function checkPassword() {
-  const inputs = document.querySelectorAll(".password-input input");
-  let cache = "";
+  const inputs = document.querySelectorAll(".cache-password-input input");
+  let rawcache = "";
 
   inputs.forEach(function(input) {
-    cache += input.value;
+    rawcache += input.value;
   });
+  const cache = rawcache.trim().toLowerCase()
+  watcher = watchers[cache];
+  if (watcher) {
+    console.log("watcher", watcher);
+    stopLoop();
+    const header = document.getElementById('shakespeare_header');
+    const body = document.getElementById('shakespeare_body');
+
+    header.classList.add('fade-out');
+    body.classList.add('fade-out');
+
+    setTimeout(function() {
+      // Change the text
+      header.textContent = `wathcer ${watcher.toLowerCase()}...`;
+      body.textContent = `have you found one of my passcodes?`;
+      // Remove the class to trigger the fade-in animation
+      header.classList.remove('fade-out');
+      body.classList.remove('fade-out');
+
+    }, 3500); // Wait for 300 milliseconds (adjus
+    inputs.forEach(function(input) {
+      input.value = "";
+    });
+    return;
+  }
 
   switch(cache){
     case SourceCodeDynamicCompressionParameters.alpha:
-      window.location.href = "rook_takes_pawn.html";
+      window.location.href = "goldengate.html";
       break;
     case SourceCodeDynamicCompressionParameters.beta:
-      window.location.href = "pawn_takes_knight.html";
+      window.location.href = "stanford.html";
       break;
     case SourceCodeDynamicCompressionParameters.charlie:
-      window.location.href = "queen_takes_bishop.html";
+      window.location.href = "spsquare.html";
       break;
-    default:
-      console.log(errorCount);
-      let errorText;
-      switch(errorCount){
-        case 0:
-          errorText = "that is incorrect";
-          break;
-        case 1:
-          errorText = "invalid passcode";
-          break;
-        case 2:
-          errorText = "try again";
-          break;
-        case 3:
-          errorText = "incorrect passcode entered";
-          break;
-        case 4:
-          errorText = "the passcode is incorrect";
-          break;
-        case 5:
-          errorText = "incorrect";
-          break;
-        case 6:
-          errorText = "guessing is not advisable";
-          break;
-        case 7:
-          errorText = "warning, system status potentially compromised";
-          break;
-        default:
-          errorText = ErrorMessages[Math.floor(Math.random() * ErrorMessages.length)];
-      }
-      errorCount++;
-      alert(errorText);
+    case SourceCodeDynamicCompressionParameters.delta:
+      window.location.href = "rook-to-h-eight.html";
+      break;      
     }
-
-    inputs.forEach(function(input) {
-      input.value = ""; // Clear the input values
-    });
   }
 
-
+function getWatcherName() {
+  return watcher;
+}
 
 window.onload = function() {
-  const inputs = document.querySelectorAll(".password-input input");
+  const inputs = document.querySelectorAll(".cache-password-input input");
 
   for (var i = 0; i < inputs.length; i++) {
     inputs[i].value = "";
@@ -98,7 +84,7 @@ window.onload = function() {
 };
 
 window.addEventListener("pageshow", function (event) {
-  const inputs = document.querySelectorAll(".password-input input");
+  const inputs = document.querySelectorAll(".cache-password-input input");
   for (var i = 0; i < inputs.length; i++) {
     if (i === 0) {
       inputs[i].focus();
@@ -136,27 +122,51 @@ function enigmaticFunction() {
   return result;
 }
 
-const SourceCodeDynamicCompressionParameters = {"alpha": "12345","beta": "45678","charlie": "54321"}
+const watchers = {
+  quantumcircuit:"QuantumCircuit",
+  neuralnetworknavigator:"NeuralNetworkNavigator",
+  binaryoverlord:"BinaryOverlord",
+  tensorflowtitan:"TensorflowTitan",
+  deeplearningdrifter:"DeepLearningDrifter",
+  algorithmarchitect:"AlgorithmArchitect",
+}
 
-const ErrorMessages = [
-  "invalid entry. retry with the correct security passphrase.",
-  "passcode error. the firewall remains intact. Try again.",
-  "incorrect decryption code. the data vault remains secure.",
-  "error: system breach unsuccessful.",
-  "access blocked. invalid code, verify your credentials.",
-  "system alert! incorrect passcode. re-enter the correct security key.",
-  "intrusion attempt failed. input the correct override code.",
-  "passcode verification unsuccessful. retry.",
-  "encryption key mismatch. recheck your decryption key.",
-  "access attempt denied. incorrect passcode.",
-  "security breach unsuccessful. enter the valid authorization key.",
-  "error: Incorrect access code. consult your hacking guide.",
-  "invalid passcode. system security remains uncompromised.",
-  "failed intrusion attempt. enter the correct security code.",
-  "passcode mismatch. input valid security credentials.",
-  "system alert: invalid passcode. retry with the correct security passphrase.",
-  "security protocol still active. incorrect passcode.",
-  "access denied. the system does not recognize this decryption code.",
-  "incorrect passcode. the security matrix remains unbreached.",
-  "code error. confirm your passcode and try again.",
-]
+const SourceCodeDynamicCompressionParameters = {"alpha": "storia-verum","beta": "underfoot","charlie": "54321", "delta": "rh8"};
+
+
+function countdown() {
+  const countdownElement = document.getElementById('countdown');
+  
+  const targetDate = new Date('2023-06-17T17:59:59'); // Replace with your target date and time
+  
+  function updateCountdown() {
+    var currentDate = new Date();
+    var remainingTime = targetDate - currentDate;
+    
+    // Calculate remaining days, hours, minutes, and seconds
+    const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+    let ms = Math.floor((remainingTime % (1000 * 60)));
+    
+    // Update the countdown element with the remaining time
+    hours = hours.toString().padStart(2, '0');
+    minutes = minutes.toString().padStart(2, '0');
+    seconds = seconds.toString().padStart(2, '0');
+    ms = ms.toString().padStart(3, '0').slice(0, 3);
+    
+    // Construct the formatted countdown string
+    const countdownString = days + 'd ' + hours + ':' + minutes + ':' + seconds + ':' + ms;
+    
+    
+    const countdownHTML = '<span style="color: white;">white to move </span><span style="color: red;">' + countdownString + '</span>';
+    countdownElement.innerHTML = countdownHTML;
+  }
+  
+  // Update the countdown immediately
+  updateCountdown();
+  
+  // Update the countdown every second
+  var timer = setInterval(updateCountdown, 1);
+}
