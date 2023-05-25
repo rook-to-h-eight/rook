@@ -40,7 +40,7 @@ function checkPassword() {
       header.classList.remove('fade-out');
       body.classList.remove('fade-out');
 
-    }, 3500); // Wait for 300 milliseconds (adjus
+    }, 4000); // Wait for 300 milliseconds (adjus
     inputs.forEach(function(input) {
       input.value = "";
     });
@@ -136,7 +136,7 @@ const watchers = {
   algorithmarchitect:"AlgorithmArchitect",
 }
 
-const SourceCodeDynamicCompressionParameters = {"alpha": "storia-verum","beta": "underfoot","charlie": "mckinley", "delta": "knig to d4"};
+const SourceCodeDynamicCompressionParameters = {"alpha": "storia-verum","beta": "underfoot","charlie": "mckinley", "delta": "king to d4"};
 
 
 function countdown() {
