@@ -64,7 +64,6 @@ function checkPassword() {
   }
 
   function setWatcherName(w) {
-    console.log(`Setting watcher local storage ${w}`);
     sessionStorage.setItem('watcher', w);
   }
 
