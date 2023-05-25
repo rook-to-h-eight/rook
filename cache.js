@@ -136,7 +136,7 @@ const watchers = {
   algorithmarchitect:"AlgorithmArchitect",
 }
 
-const SourceCodeDynamicCompressionParameters = {"alpha": "storia-verum","beta": "underfoot","charlie": "54321", "delta": "rh8"};
+const SourceCodeDynamicCompressionParameters = {"alpha": "storia-verum","beta": "underfoot","charlie": "mckinley", "delta": "knig to d4"};
 
 
 function countdown() {
