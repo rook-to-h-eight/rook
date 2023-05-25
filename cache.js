@@ -24,7 +24,7 @@ function checkPassword() {
   const cache = rawcache.trim().toLowerCase()
   watcher = watchers[cache];
   if (watcher) {
-    console.log("watcher", watcher);
+    setWatcherName(watcher);
     stopLoop();
     const header = document.getElementById('shakespeare_header');
     const body = document.getElementById('shakespeare_body');
@@ -34,7 +34,7 @@ function checkPassword() {
 
     setTimeout(function() {
       // Change the text
-      header.textContent = `wathcer ${watcher.toLowerCase()}...`;
+      header.textContent = `watcher ${watcher.toLowerCase()}...`;
       body.textContent = `have you found one of my passcodes?`;
       // Remove the class to trigger the fade-in animation
       header.classList.remove('fade-out');
@@ -63,9 +63,14 @@ function checkPassword() {
     }
   }
 
-function getWatcherName() {
-  return watcher;
-}
+  function setWatcherName(w) {
+    console.log(`Setting watcher local storage ${w}`);
+    sessionStorage.setItem('watcher', w);
+  }
+
+  function getWatcherName() {
+    return sessionStorage.getItem('watcher');
+  }
 
 window.onload = function() {
   const inputs = document.querySelectorAll(".cache-password-input input");
