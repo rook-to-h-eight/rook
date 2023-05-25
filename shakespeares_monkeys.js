@@ -11,40 +11,60 @@ function setup() {
 function init() {
   const mutation_rate = 0.03;
   const population_size = 200;
-  shakespeare_header = select('#shakespeare_header');
-  shakespeare_body = select('#shakespeare_body');
-
-  const possible_header_text = ['welcome watcher'];
-  const target_header_text = possible_header_text[floor(random(possible_header_text.length))];
-  const possible_body_text = ['enter your username'];
-  const target_body_text = possible_body_text[floor(random(possible_body_text.length))];
-  header = new Population(target_header_text, mutation_rate, population_size);
-  body = new Population(target_body_text, mutation_rate, population_size);
+  shakespeare_header = document.getElementById("shakespeare_header");
+  shakespeare_body = document.getElementById('shakespeare_body');
+  if (shakespeare_header && providedHeader) {
+    const possible_header_text = providedHeader;
+    const target_header_text = possible_header_text[floor(random(possible_header_text.length))];
+    header = new Population(target_header_text, mutation_rate, population_size);
+  } else {
+    headerFinished = true;
+  }
+  if(shakespeare_body && providedBody) {
+    const possible_body_text = providedBody;
+    const target_body_text = possible_body_text[floor(random(possible_body_text.length))];
+    body = new Population(target_body_text, mutation_rate, population_size);
+  } else {
+    bodyFinished = true;
+  }
 }
 
 function stopLoop() {
   myP5.noLoop();
 }
- 
+
+let headerFinished = false;
+let bodyFinished = false;
 function draw() {
-  header.evolve();
-  body.evolve();
-  if(frameCount % 5 === 0)  {
-    draw_best_header = header.best;
-    draw_best_body = body.best;
+  if (header) {
+    header.evolve();
+    if(frameCount % 5 === 0)  {
+      draw_best_header = header.best;
+    }
+    if (header?.finished) draw_best_header = header.best;
+    if (shakespeare_header) {
+      shakespeare_header.textContent = draw_best_header;      
+    }
+
   }
-  if (header.finished) draw_best_header = header.best;
-  if (body.finished) draw_best_body = body.best;
-  shakespeare_header.elt.firstChild.textContent = draw_best_header;
-  shakespeare_body.elt.firstChild.textContent = draw_best_body;
-  if (header.finished && body.finished) {
+  if (body) {
+    body.evolve();
+    if(frameCount % 5 === 0)  {
+      draw_best_body = body.best;
+    }
+    if (body?.finished) draw_best_body = body.best;
+    if (shakespeare_body) {
+      shakespeare_body.textContent = draw_best_body;
+    }
+  }
+  
+  if ((headerFinished || header.finished) && (bodyFinished || body.finished)) {
     noLoop();
   }
 }
 
 class Population {
   constructor(target, rate = 0.01, num_ind = 200) {
-
     this.generation = 0;
     this.finished = false;
     this.target = target;
@@ -122,7 +142,7 @@ class DNA {
    this.genes = [];
    this.fitness = 0;
    this.accept_probability = 0.01;
-   this.possible_characters = 'abcdefghijklmnopqrstuvwxyz0123456789\'.!?,:;/@\\ αβγδεζηθικλμνξοπρστυφχψωабвгдеёжзийклмнопрстуфхцчшщъыьэюяا';
+   this.possible_characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\'.!?,:;/@\\ αβγδεζηθικλμνξοπρστυφχψωабвгдеёжзийклмнопрстуфхцчшщъыьэюяا';
    if (!child) {
      for ( var i = 0; i < target_length; i++ ) {
        const char = this.generateRandomChar();

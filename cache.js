@@ -164,7 +164,7 @@ function countdown() {
     const countdownString = days + 'd ' + hours + ':' + minutes + ':' + seconds + ':' + ms;
     
     
-    const countdownHTML = '<span style="color: white;">white to move </span><span style="color: red;">' + countdownString + '</span>';
+    const countdownHTML = '<span style="color: red;">' + countdownString + '</span>';
     countdownElement.innerHTML = countdownHTML;
   }
   

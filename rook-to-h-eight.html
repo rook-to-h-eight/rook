@@ -5,18 +5,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./style.css">
 	<script src="./cache.js"></script>
+  <script src="./shakespeares_monkeys.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
 </head>
 <body>
-  <div id="imageContainer">
+  <div id="image-container">
     <img id="image" src="./board1.jpg" alt="Image">
   </div>
-  <h2 id="countdown">White to move.</h2>
+  <h2><span id="shakespeare_header" style="color: white;">black is winning. </span><span id="countdown">1234</span></span> </h2>
 
   
 	<script>
       const imageElement = document.getElementById('image');
-      const imageContainer = document.getElementById('imageContainer');
-
+      const imageContainer = document.getElementById('image-container');
+      let providedHeader = ["rook plays king to d4. white to move: "];
+      let providedBody;
       const images = ['./board1.jpg', './board2.jpg', './board3.jpg'];
       let currentImageIndex = 0;
 
