@@ -35,7 +35,7 @@ function checkPassword() {
     setTimeout(function() {
       // Change the text
       header.textContent = `watcher ${watcher.toLowerCase()}...`;
-      body.textContent = `have you found one of my passcodes?`;
+      body.textContent = `1. rook to h8`;
       // Remove the class to trigger the fade-in animation
       header.classList.remove('fade-out');
       body.classList.remove('fade-out');
